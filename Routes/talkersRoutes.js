@@ -1,6 +1,7 @@
-const talkerJSON = require('../talker.json');
-
-const getTalkers = (req, res) => res.status(200).json(talkerJSON);
+const getTalkers = (req, res) => {
+  const { talkerJSON } = req;
+  res.status(200).json(talkerJSON);
+};
 
 module.exports = {
   getTalkers,

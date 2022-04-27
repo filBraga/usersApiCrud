@@ -1,21 +1,13 @@
 const express = require('express');
 const { getTalkers } = require('./talkersRoutes');
+const talkersMiddleware = require('../Middlewares/talkersMiddleware');
 
 const router = express.Router();
 
 // TALKER
-router.get('/talker', getTalkers);
+router.get('/talker', talkersMiddleware, getTalkers);
 
-router.post('/talker', () => {
-
-});
-
-router.put('/talker', () => {
-
-});
-
-router.delete('/talker', () => {
-
-});
+// TALKER ID
+router.get('/talker/:id', getTalkers);
 
 module.exports = router;
