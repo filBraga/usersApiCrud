@@ -1,18 +1,15 @@
-const fs = require('fs');
-const path = require('path');
+const getTalkers = (req, res) => {
+  const { talkerJSON } = req;
+  const talkerId = req.params.id;
+  const talker = talkerJSON[talkerId];
 
-const talkersMiddleware = (req, res, next) => {
-  // Reading the directory path
-  const dirPath = path.join(__dirname, '..', 'talker.json');
-  // About __dirname above:
-  // https://stackoverflow.com/questions/8131344/what-is-the-difference-between-dirname-and-in-node-js
-  // console.log(dirPath);
-  // Returning without JSON.parse in readFileSync below:
-  // { "type": "Buffer", "data": [ 91, ... 93 ] }
-  const fileContent = JSON.parse(fs.readFileSync(dirPath));
-  // console.log(fileContent);
-  req.talkerJSON = fileContent;
-  next();
+  if (!talker) {
+    // console.log('Negativo');
+    res.status(200).json(talkerJSON);
+  } else {
+    // console.log('Positivo');
+    res.status(200).json(talkerJSON[talkerId - 1]);
+  }
 };
 
-module.exports = talkersMiddleware;
+module.exports = getTalkers; 

@@ -1,14 +1,15 @@
 const express = require('express');
-const { getTalkers } = require('./talkersRoutes');
-const { getSingleTalkers } = require('./singleTalkerRoutes');
-const talkersMiddleware = require('../Middlewares/talkersMiddleware');
+
+const getTalkers = require('../Middlewares/talkersMiddleware');
+const getSingleTalkers = require('../Middlewares/singleTalkerMiddleware');
+const readAndParseMiddleware = require('../Middlewares/readAndParseMiddleware');
 
 const router = express.Router();
 
 // TALKER
-router.get('/talker', talkersMiddleware, getTalkers);
+router.get('/talker', readAndParseMiddleware, getTalkers);
 
 // TALKER ID
-router.get('/talker/:id', talkersMiddleware, getSingleTalkers);
+router.get('/talker/:id', readAndParseMiddleware, getSingleTalkers);
 
-module.exports = router;
+module.exports = router; 
