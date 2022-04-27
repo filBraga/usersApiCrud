@@ -14,6 +14,7 @@ app.get('/', (_request, response) => {
 });
 
 // Filipe Braga:
+app.use(express.json()); // same as body-parse
 app.use(router);
 
 app.listen(PORT, () => {
