@@ -16,7 +16,16 @@ app.get('/', (_request, response) => {
 // Filipe Braga:
 app.use(express.json()); // same as body-parse
 app.use(router);
+app.use((err, req, res, _next) => {
+  res.status(err.status || 500);
+  res.send({
+    error: {
+      status: err.status || 500,
+      message: err.message,
+    },
+  });
+});
 
 app.listen(PORT, () => {
-  console.log('Online');
+  console.log(`Server running on port ${PORT}`);
 });

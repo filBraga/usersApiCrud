@@ -14,6 +14,6 @@ router.get('/talker', readAndParseMiddleware, getTalkers);
 router.get('/talker/:id', readAndParseMiddleware, getSingleTalkers);
 
 // Login Post
-router.post('/login', loginMiddleware);
+router.post('/login', readAndParseMiddleware, loginMiddleware);
 
 module.exports = router; 
