@@ -15,13 +15,13 @@ function generateToken(length) {
 const schema = Joi.object({
   email: Joi.string().min(3).required().email()
     .messages({
-      'string.email': 'O \"email\" deve ter o formato \"email@email.com\"',
-      'any.required': 'O campo \"email\" é obrigatório',
+      'string.email': 'O "email" deve ter o formato "email@email.com"',
+      'any.required': 'O campo "email" é obrigatório',
   }),
   password: Joi.string().min(3).required()
     .messages({
-      'string.min': 'O \"password\" deve ter pelo menos 6 caracteres',
-      'any.required': 'O campo \"password\" é obrigatório',
+      'string.min': 'O "password" deve ter pelo menos 6 caracteres',
+      'any.required': 'O campo "password" é obrigatório',
   }),
 });
 
@@ -33,7 +33,6 @@ const loginMiddleware = (req, res) => {
   if (validation.error !== undefined) {
     return res.status(400).json({ message: validation.error.details[0].message });
   }
-
   if (!email) {
     return res.status(400).json({ message: 'O campo "email" é obrigatório' });
   }
