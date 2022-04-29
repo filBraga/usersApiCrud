@@ -28,16 +28,10 @@ const schema = Joi.object({
 // https://www.youtube.com/watch?v=u9kxYilQ9l8
 
 const loginMiddleware = (req, res) => {
-  const { email, password } = req.body; // Buffer -> JSON
+  // const { email, password } = req.body; // Buffer -> JSON
   const validation = schema.validate(req.body);
   if (validation.error !== undefined) {
     return res.status(400).json({ message: validation.error.details[0].message });
-  }
-  if (!email) {
-    return res.status(400).json({ message: 'O campo "email" é obrigatório' });
-  }
-  if (!password) {
-    return res.status(400).json({ message: 'O campo "password" é obrigatório' });
   }
   const tokenGenerated = generateToken(16);
   return res.status(200).json({ token: tokenGenerated });
