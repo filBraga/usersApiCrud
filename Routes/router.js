@@ -7,6 +7,7 @@ const readAndParseMiddleware = require('../Middlewares/readAndParseMiddleware');
 const loginMiddleware = require('../Middlewares/loginMiddleware');
 const authMiddleware = require('../Middlewares/authMiddleware');
 const editTalkers = require('../Middlewares/editTalkers');
+const deleteTalker = require('../Middlewares/deleteTalker');
 
 const router = express.Router();
 
@@ -17,6 +18,7 @@ router.post('/talker', authMiddleware, postTalkers);
 // TALKER ID
 router.get('/talker/:id', readAndParseMiddleware, getSingleTalkers);
 router.put('/talker/:id', authMiddleware, editTalkers);
+router.delete('/talker/:id', authMiddleware, deleteTalker);
 
 // Login Post
 router.post('/login', readAndParseMiddleware, loginMiddleware);

@@ -1,6 +1,5 @@
 const Joi = require('joi');
 const editFile = require('../utils/editFile');
-const readTalkers = require('../utils/readTalkers');
 
 const regexDate = /^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]\d{4}/i;
 
@@ -41,7 +40,7 @@ const editTalkers = (req, res) => {
     return res.status(400).json({ message: validation.error.details[0].message });
   }
   const returnFrom = editFile(req.body, req.params.id);
-  res.status(200).json(returnFrom[req.params.id - 1]);
+  return res.status(200).json(returnFrom[req.params.id - 1]);
 };
 
 module.exports = editTalkers;
