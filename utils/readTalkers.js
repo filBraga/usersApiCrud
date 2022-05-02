@@ -6,11 +6,9 @@ const readTalkers = () => {
   const filePath = path.join(__dirname, '..', 'talker.json');
   // About __dirname above:
   // https://stackoverflow.com/questions/8131344/what-is-the-difference-between-dirname-and-in-node-js
-  // console.log(filePath);
   // Returning without JSON.parse in readFileSync below:
   // { "type": "Buffer", "data": [ 91, ... 93 ] }
   return JSON.parse(fs.readFileSync(filePath));
-  // console.log(fileContent);
 };
 
 module.exports = readTalkers;
